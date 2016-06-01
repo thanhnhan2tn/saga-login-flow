@@ -2,6 +2,8 @@
 
 > A login/register flow built with React & Redux Saga
 
+[![Build Status](https://travis-ci.org/sotojuan/saga-login-flow.svg?branch=master)](https://travis-ci.org/sotojuan/saga-login-flow)
+
 This application demonstrates what a React-based register/login workflow might look like with [Redux Saga](https://github.com/yelouafi/redux-saga).
 
 It's based on Max Stoiber's [login-flow](https://github.com/mxstbr/login-flow), but uses Redux Saga instead of Redux Thunk to handle asynchronous actions.
