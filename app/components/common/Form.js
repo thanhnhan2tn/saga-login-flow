@@ -70,7 +70,7 @@ class Form extends Component {
     this.props.dispatch(changeForm(newFormState))
   }
 
-  _onSubmit (evt) {
+  _onSubmit (event) {
     evt.preventDefault()
     this.props.onSubmit(this.props.data.username, this.props.data.password)
   }
