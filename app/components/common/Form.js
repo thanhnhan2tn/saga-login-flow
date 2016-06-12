@@ -71,7 +71,7 @@ class Form extends Component {
   }
 
   _onSubmit (event) {
-    evt.preventDefault()
+    event.preventDefault()
     this.props.onSubmit(this.props.data.username, this.props.data.password)
   }
 }
