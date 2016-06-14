@@ -27,7 +27,7 @@ import {
  * @param  {object} options                Options
  * @param  {boolean} options.isRegistering Is this a register request?
  */
-function * authorize ({username, password, isRegistering}) {
+export function * authorize ({username, password, isRegistering}) {
   // We send an action that tells Redux we're sending a request
   yield put({type: SENDING_REQUEST, sending: true})
 
@@ -49,6 +49,7 @@ function * authorize ({username, password, isRegistering}) {
 
     return response
   } catch (error) {
+    console.log('hi')
     // If we get an error we send Redux the appropiate action and return
     yield put({type: REQUEST_ERROR, error: error.message})
 
@@ -62,7 +63,7 @@ function * authorize ({username, password, isRegistering}) {
 /**
  * Effect to handle logging out
  */
-function * logout () {
+export function * logout () {
   // We tell Redux we're in the middle of a request
   yield put({type: SENDING_REQUEST, sending: true})
 
