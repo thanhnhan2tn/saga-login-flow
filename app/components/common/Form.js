@@ -50,7 +50,7 @@ class Form extends Component {
             <LoadingButton />
           ) : (
             <button className='form__submit-btn' type='submit'>
-               {this.props.btnText}
+              {this.props.btnText}
             </button>
              )}
         </div>
