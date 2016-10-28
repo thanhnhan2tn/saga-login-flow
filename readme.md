@@ -21,4 +21,4 @@ Authentication happens in `app/auth/index.js`, using `fakeRequest.js` and `fakeS
 
 ## License
 
-MIT © [Juan Soto](http://juansoto.me)
+MIT © [Juan Soto](https://juansoto.me)
