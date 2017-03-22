@@ -1,5 +1,5 @@
 import test from 'ava'
-import auth from '../../app/auth'
+import auth from '../../app/utils/auth'
 
 test('registers when given good data', t => {
   auth.register('jennifer', 'password')

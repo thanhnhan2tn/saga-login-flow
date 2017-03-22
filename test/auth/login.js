@@ -1,8 +1,8 @@
 import test from 'ava'
-import auth from '../../app/auth'
+import auth from '../../app/utils/auth'
 
 import {hashSync} from 'bcryptjs'
-import genSalt from '../../app/auth/salt'
+import genSalt from '../../app/utils/auth/salt'
 
 test('returns true on correct login', t => {
   let salt = genSalt('juan')
