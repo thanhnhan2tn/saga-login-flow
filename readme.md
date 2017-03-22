@@ -1,6 +1,6 @@
 # Saga Login Flow
 
-> A login/register flow built with React & Redux Saga
+> A login/register flow built with React & Redux Saga extends from [saga-login-flow](https://github.com/sotojuan/saga-login-flow)
 
 [![Build Status](https://travis-ci.org/sotojuan/saga-login-flow.svg?branch=master)](https://travis-ci.org/sotojuan/saga-login-flow)
 
@@ -15,7 +15,7 @@ All the saga stuff is [here](https://github.com/sotojuan/saga-login-flow/blob/ma
 Authentication happens in `app/auth/index.js`, using `fakeRequest.js` and `fakeServer.js`. `fakeRequest` is a fake `XMLHttpRequest` wrapper. `fakeServer` responds to the fake HTTP requests and pretends to be a real server, storing the current users in local storage with the passwords encrypted using `bcrypt`.
 
 ## Thanks
-
+* [sotojuan](https://github.com/sotojuan/saga-login-flow) for Login flow.
 * [Max Stoiber](https://twitter.com/mxstbr) for the Login Flow idea.
 * [Yassine Elouafi](https://github.com/yelouafi) for Redux Saga. Awesome!
 
