@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 function LoadingIndicator () {
   return (
@@ -19,7 +19,7 @@ function LoadingIndicator () {
         <div className='sk-circle12 sk-circle' />
       </div>
     </div>
-  );
+  )
 }
 
-export default LoadingIndicator;
+export default LoadingIndicator

@@ -1,21 +1,21 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import Form from './../components/Form';
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
+import Form from './../components/Form'
 
-import {registerRequest} from '../actions';
+import {registerRequest} from '../actions'
 
 class Register extends Component {
   constructor (props) {
-    super(props);
+    super(props)
 
-    this._register = this._register.bind(this);
+    this._register = this._register.bind(this)
   }
   _register (username, password) {
     this.props.dispatch(registerRequest({username, password}))
   }
   render () {
-    const {dispatch, data, history} = this.props;
-    const {formState, currentlySending, error} = data;
+    const {dispatch, data, history} = this.props
+    const {formState, currentlySending, error} = data
 
     return (
       <div className='form-page__wrapper'>
@@ -47,7 +47,7 @@ Register.propTypes = {
 function mapStateToProps (state) {
   return {
     data: state
-  };
+  }
 }
 
-export default connect(mapStateToProps)(Register);
+export default connect(mapStateToProps)(Register)

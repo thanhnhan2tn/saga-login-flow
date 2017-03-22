@@ -1,20 +1,20 @@
-import React, {Component} from 'react';
-import ErrorMessage from './ErrorMessage';
-import LoadingButton from './LoadingButton';
+import React, {Component} from 'react'
+import ErrorMessage from './ErrorMessage'
+import LoadingButton from './LoadingButton'
 
-import {changeForm} from './../actions';
+import {changeForm} from './../actions'
 
 class Form extends Component {
   constructor (props) {
-    super(props);
+    super(props)
 
-    this._onSubmit = this._onSubmit.bind(this);
-    this._changeUsername = this._changeUsername.bind(this);
-    this._changePassword = this._changePassword.bind(this);
+    this._onSubmit = this._onSubmit.bind(this)
+    this._changeUsername = this._changeUsername.bind(this)
+    this._changePassword = this._changePassword.bind(this)
   }
   render () {
-    const {error, data, currentlySending, btnText} = this.props;
-    const {username, password} = data;
+    const {error, data, currentlySending, btnText} = this.props
+    const {username, password} = data
     return (
       <form className='form' onSubmit={this._onSubmit}>
         {error ? <ErrorMessage error={error} /> : null}
@@ -55,24 +55,24 @@ class Form extends Component {
              )}
         </div>
       </form>
-    );
+    )
   }
 
   _changeUsername (event) {
-    this._emitChange({...this.props.data, username: event.target.value});
+    this._emitChange({...this.props.data, username: event.target.value})
   }
 
   _changePassword (event) {
-    this._emitChange({...this.props.data, password: event.target.value});
+    this._emitChange({...this.props.data, password: event.target.value})
   }
 
   _emitChange (newFormState) {
-    this.props.dispatch(changeForm(newFormState));
+    this.props.dispatch(changeForm(newFormState))
   }
 
   _onSubmit (event) {
-    event.preventDefault();
-    this.props.onSubmit(this.props.data.username, this.props.data.password);
+    event.preventDefault()
+    this.props.onSubmit(this.props.data.username, this.props.data.password)
   }
 }
 
@@ -86,4 +86,4 @@ Form.propTypes = {
   currentlySending: React.PropTypes.bool
 }
 
-export default Form;
+export default Form

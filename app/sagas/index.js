@@ -4,18 +4,18 @@
 
 // Sagas help us gather all our side effects (network requests in this case) in one place
 
-import {hashSync} from 'bcryptjs';
-import {take, call, put, fork, race} from 'redux-saga/effects';
-import { sendingRequest, setAuthState, requestError } from '../actions';
-import genSalt from '../utils/auth/salt';
-import auth from '../utils/auth';
-import { forwardTo } from '../utils';
+import {hashSync} from 'bcryptjs'
+import {take, call, put, fork, race} from 'redux-saga/effects'
+import { sendingRequest, setAuthState, requestError, changeForm } from '../actions'
+import genSalt from '../utils/auth/salt'
+import auth from '../utils/auth'
+import { forwardTo } from '../utils'
 
 import {
   LOGIN_REQUEST,
   REGISTER_REQUEST,
-  LOGOUT,
-} from '../actions/constants';
+  LOGOUT
+} from '../actions/constants'
 
 /**
  * Effect to handle authorization
@@ -26,7 +26,7 @@ import {
  */
 export function* authorize ({username, password, isRegistering}) {
   // We send an action that tells Redux we're sending a request
-  yield put(sendingRequest(true));
+  yield put(sendingRequest(true))
 
   // We then try to register or log in the user, depending on the request
   try {
@@ -48,12 +48,12 @@ export function* authorize ({username, password, isRegistering}) {
   } catch (error) {
     console.log('hi')
     // If we get an error we send Redux the appropiate action and return
-    yield put(requestError(error.message));
+    yield put(requestError(error.message))
 
-    return false;
+    return false
   } finally {
     // When done, we tell Redux we're not in the middle of a request any more
-    yield put(sendingRequest(false));
+    yield put(sendingRequest(false))
   }
 }
 
@@ -62,17 +62,17 @@ export function* authorize ({username, password, isRegistering}) {
  */
 export function* logout () {
   // We tell Redux we're in the middle of a request
-  yield put(sendingRequest(true));
+  yield put(sendingRequest(true))
 
   // Similar to above, we try to log out by calling the `logout` function in the
   // `auth` module. If we get an error, we send an appropiate action. If we don't,
   // we return the response.
   try {
-    let response = yield call(auth.logout);
-    yield put(sendingRequest(true));
-    return response;
+    let response = yield call(auth.logout)
+    yield put(sendingRequest(true))
+    return response
   } catch (error) {
-    yield put(requestError(error.message));
+    yield put(requestError(error.message))
   }
 }
 
@@ -84,8 +84,8 @@ export function* loginFlow () {
   // Basically here we say "this saga is always listening for actions"
   while (true) {
     // And we're listening for `LOGIN_REQUEST` actions and destructuring its payload
-    const request = yield take(LOGIN_REQUEST);
-    const {username, password} = request.data;
+    const request = yield take(LOGIN_REQUEST)
+    const {username, password} = request.data
 
     // A `LOGOUT` action may happen while the `authorize` effect is going on, which may
     // lead to a race condition. This is unlikely, but just in case, we call `race` which
@@ -99,7 +99,7 @@ export function* loginFlow () {
     if (winner.auth) {
       // ...we send Redux appropiate actions
       yield put(setAuthState(true)) // User is logged in (authorized)
-      yield put(changeForm({username: '', password: ''})); // Clear form
+      yield put(changeForm({username: '', password: ''})) // Clear form
       forwardTo('/dashboard') // Go to dashboard page
       // If `logout` won...
     } else if (winner.logout) {
@@ -119,7 +119,7 @@ export function* loginFlow () {
 export function* logoutFlow () {
   while (true) {
     yield take(LOGOUT)
-    yield put({type: SET_AUTH, newAuthState: false})
+    yield put(setAuthState(false))
 
     yield call(logout)
     forwardTo('/')
@@ -132,8 +132,8 @@ export function* logoutFlow () {
  */
 export function* registerFlow () {
   while (true) {
-    let request = yield take(REGISTER_REQUEST);
-    let {username, password} = request.data;
+    let request = yield take(REGISTER_REQUEST)
+    let {username, password} = request.data
 
     // We call the `authorize` task with the data, telling it that we are registering a user
     // This returns `true` if the registering was successful, `false` if not
@@ -141,7 +141,7 @@ export function* registerFlow () {
 
     // If we could register a user, we send the appropiate actions
     if (wasSuccessful) {
-      yield put(setAuthState(true)); // User is logged in (authorized) after being registered
+      yield put(setAuthState(true)) // User is logged in (authorized) after being registered
       yield put(changeForm({username: '', password: ''})) // Clear form
       forwardTo('/dashboard') // Go to dashboard page
     }
@@ -155,8 +155,8 @@ export function* registerFlow () {
 // each saga so that they are all "active" and listening.
 // Sagas are fired once at the start of an app and can be thought of as processes running
 // in the background, watching actions dispatched to the store.
-export default function* watchersSaga() {
-  yield fork(loginFlow);
-  yield fork(logoutFlow);
-  yield fork(registerFlow);
+export default function* watchersSaga () {
+  yield fork(loginFlow)
+  yield fork(logoutFlow)
+  yield fork(registerFlow)
 }

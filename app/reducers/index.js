@@ -8,8 +8,8 @@ import {
   SENDING_REQUEST,
   REQUEST_ERROR,
   CLEAR_ERROR
-} from '../actions/constants';
-import auth from '../utils/auth';
+} from '../actions/constants'
+import auth from '../utils/auth'
 
 // The initial application state
 const initialState = {

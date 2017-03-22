@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 function ErrorMessage (props) {
   return (
@@ -7,11 +7,11 @@ function ErrorMessage (props) {
         {props.error}
       </p>
     </div>
-  );
+  )
 }
 
 ErrorMessage.propTypes = {
   error: React.PropTypes.string
 }
 
-export default ErrorMessage;
+export default ErrorMessage
