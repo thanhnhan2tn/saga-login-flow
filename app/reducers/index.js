@@ -8,11 +8,11 @@ import {
   SENDING_REQUEST,
   REQUEST_ERROR,
   CLEAR_ERROR
-} from '../actions/constants'
-import auth from '../auth'
+} from '../actions/constants';
+import auth from '../utils/auth';
 
 // The initial application state
-let initialState = {
+const initialState = {
   formState: {
     username: '',
     password: ''

@@ -1,6 +1,6 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import Form from './common/Form'
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import Form from './../components/Form';
 
 import {loginRequest} from '../actions'
 
@@ -39,11 +39,11 @@ Login.propTypes = {
 }
 
 // Which props do we want to inject, given the global state?
-function select (state) {
+function mapStateToProps (state) {
   return {
     data: state
-  }
+  };
 }
 
 // Wrap the component to inject dispatch and state into it
-export default connect(select)(Login)
+export default connect(mapStateToProps)(Login);

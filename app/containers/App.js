@@ -1,6 +1,6 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import Nav from './common/Nav'
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import Nav from './../components/Nav';
 
 class App extends Component {
   render () {
@@ -25,10 +25,10 @@ App.propTypes = {
   dispatch: React.PropTypes.func
 }
 
-function select (state) {
+function mapStateToProps (state) {
   return {
     data: state
-  }
+  };
 }
 
-export default connect(select)(App)
+export default connect(mapStateToProps)(App);

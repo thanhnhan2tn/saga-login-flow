@@ -1,36 +1,36 @@
-import 'babel-polyfill'
+import 'babel-polyfill';
 
-import React, {Component} from 'react'
-import ReactDOM from 'react-dom'
-import {Router, Route, browserHistory} from 'react-router'
-import {createStore, applyMiddleware} from 'redux'
-import createSagaMiddleware from 'redux-saga'
-import {Provider} from 'react-redux'
-import createLogger from 'redux-logger'
-import reducer from './reducers'
-import rootSaga from './sagas'
-import {clearError} from './actions'
+import React, {Component} from 'react';
+import ReactDOM from 'react-dom';
+import {Router, Route, browserHistory} from 'react-router';
+import {createStore, applyMiddleware} from 'redux';
+import createSagaMiddleware from 'redux-saga';
+import {Provider} from 'react-redux';
+import createLogger from 'redux-logger';
+import reducer from './reducers';
+import rootSaga from './sagas';
+import {clearError} from './actions';
 
-import './styles/main.css'
+import './styles/main.css';
 
-import App from './components/App'
-import Home from './components/Home'
-import Login from './components/Login'
-import Register from './components/Register'
-import Dashboard from './components/Dashboard'
-import NotFound from './components/NotFound'
+import App from './containers/App';
+import Home from './containers/Home';
+import Login from './containers/Login';
+import Register from './containers/Register';
+import Dashboard from './containers/Dashboard';
+import NotFound from './containers/NotFound';
 
-let logger = createLogger({
+const logger = createLogger({
   // Ignore `CHANGE_FORM` actions in the logger, since they fire after every keystroke
   predicate: (getState, action) => action.type !== 'CHANGE_FORM'
-})
+});
 
-let sagaMiddleware = createSagaMiddleware()
+const sagaMiddleware = createSagaMiddleware();
 
 // Creates the Redux store using our reducer and the logger and saga middlewares
-let store = createStore(reducer, applyMiddleware(logger, sagaMiddleware))
+const store = createStore(reducer, applyMiddleware(logger, sagaMiddleware));
 // We run the root saga automatically
-sagaMiddleware.run(rootSaga)
+sagaMiddleware.run(rootSaga);
 
 /**
 * Checks authentication status on route change
@@ -38,27 +38,27 @@ sagaMiddleware.run(rootSaga)
 * @param  {function} replace Function provided by React Router to replace the location
 */
 function checkAuth (nextState, replace) {
-  let {loggedIn} = store.getState()
+  const {loggedIn} = store.getState();
 
-  store.dispatch(clearError())
+  store.dispatch(clearError());
 
   // Check if the path isn't dashboard. That way we can apply specific logic to
   // display/render the path we want to
   if (nextState.location.pathname !== '/dashboard') {
     if (loggedIn) {
       if (nextState.location.state && nextState.location.pathname) {
-        replace(nextState.location.pathname)
+        replace(nextState.location.pathname);
       } else {
-        replace('/')
+        replace('/');
       }
     }
   } else {
     // If the user is already logged in, forward them to the homepage
     if (!loggedIn) {
       if (nextState.location.state && nextState.location.pathname) {
-        replace(nextState.location.pathname)
+        replace(nextState.location.pathname);
       } else {
-        replace('/')
+        replace('/');
       }
     }
   }
@@ -82,8 +82,8 @@ class LoginFlow extends Component {
           </Route>
         </Router>
       </Provider>
-    )
+    );
   }
 }
 
-ReactDOM.render(<LoginFlow />, document.getElementById('app'))
+ReactDOM.render(<LoginFlow />, document.getElementById('app'));

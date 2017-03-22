@@ -1,5 +1,5 @@
-import React, {Component} from 'react'
-import {Link} from 'react-router'
+import React, {Component} from 'react';
+import {Link} from 'react-router';
 
 class NotFound extends Component {
   render () {
@@ -12,4 +12,4 @@ class NotFound extends Component {
   }
 }
 
-export default NotFound
+export default NotFound;
