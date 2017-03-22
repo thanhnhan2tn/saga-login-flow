@@ -2,7 +2,7 @@
 
 > A login/register flow built with React & Redux Saga extends from [saga-login-flow](https://github.com/sotojuan/saga-login-flow)
 
-[![Build Status](https://travis-ci.org/sotojuan/saga-login-flow.svg?branch=master)](https://travis-ci.org/sotojuan/saga-login-flow)
+[![Build Status](https://api.travis-ci.org/thanhnhan2tn/saga-login-flow.svg?branch=master)](https://travis-ci.org/thanhnhan2tn/saga-login-flow)
 
 This application demonstrates what a React-based register/login workflow might look like with [Redux Saga](https://github.com/yelouafi/redux-saga).
 
